@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sovaire | Collections</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins', sans-serif;
+      background:#faf7f2;
+      color:#222;
+      overflow-x:hidden;
+    }
+
+    h1,h2,h3{
+      font-family:'Playfair Display', serif;
+    }
+
+    /* ================= HEADER ================= */
+
+    header{
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:relative;
+      top:0;
+      left:0;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(10px);
+      z-index:1000;
+      box-shadow:0 2px 15px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      font-size:30px;
+      font-weight:bold;
+      letter-spacing:3px;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:30px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#222;
+      position:relative;
+      transition:0.3s;
+    }
+
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      width:0%;
+      height:2px;
+      background:#c89b3c;
+      transition:0.4s;
+    }
+
+    nav a:hover::after{
+      width:100%;
+    }
+
+    nav a:hover{
+      color:#c89b3c;
+    }
+
+    .menu-toggle{
+      width:35px;
+      display:none;
+      flex-direction:column;
+      gap:6px;
+      cursor:pointer;
+    }
+
+    .menu-toggle span{
+      width:100%;
+      height:3px;
+      background:#111;
+      border-radius:10px;
+    }
+
+    /* ================= HERO ================= */
+
+    .collection-hero{
+      min-height:70vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:160px 8% 100px;
+      color:white;
+      background:
+      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+      url('https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1600&auto=format&fit=crop')
+      center/cover;
+    }
+
+    .collection-hero h1{
+      font-size:75px;
+      margin-bottom:20px;
+    }
+
+    .collection-hero p{
+      max-width:700px;
+      margin:auto;
+      line-height:1.9;
+      color:#eee;
+      font-size:18px;
+    }
+
+    /* ================= COLLECTIONS ================= */
+
+    .collections{
+      padding:120px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h2{
+      font-size:55px;
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:#666;
+      font-size:18px;
+    }
+
+    .collection-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:35px;
+    }
+
+    .collection-card{
+      background:white;
+      border-radius:25px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      transition:0.5s;
+    }
+
+    .collection-card:hover{
+      transform:translateY(-12px);
+    }
+
+    .collection-image{
+      overflow:hidden;
+      position:relative;
+    }
+
+    .collection-image img{
+      width:100%;
+      height:420px;
+      object-fit:cover;
+      transition:0.5s;
+    }
+
+    .collection-card:hover img{
+      transform:scale(1.1);
+    }
+
+    .collection-tag{
+      position:absolute;
+      top:20px;
+      left:20px;
+      background:#c89b3c;
+      color:white;
+      padding:8px 18px;
+      border-radius:50px;
+      font-size:14px;
+    }
+
+    .collection-content{
+      padding:30px;
+    }
+
+    .collection-content h3{
+      font-size:32px;
+      margin-bottom:15px;
+    }
+
+    .collection-content p{
+      color:#666;
+      line-height:1.8;
+      margin-bottom:25px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 30px;
+      border-radius:50px;
+      background:#111;
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.4s;
+    }
+
+    .btn:hover{
+      background:#c89b3c;
+    }
+
+    /* ================= BANNER ================= */
+
+    .luxury-banner{
+      margin:0 8% 120px;
+      padding:100px 8%;
+      border-radius:30px;
+      text-align:center;
+      color:white;
+      background:
+      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+      url('https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1600&auto=format&fit=crop')
+      center/cover;
+    }
+
+    .luxury-banner h2{
+      font-size:60px;
+      margin-bottom:20px;
+    }
+
+    .luxury-banner p{
+      max-width:700px;
+      margin:auto;
+      line-height:1.9;
+      margin-bottom:30px;
+      color:#eee;
+    }
+
+    /* ================= FOOTER ================= */
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width:1000px){
+
+      .collection-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+    }
+
+    @media(max-width:900px){
+
+      .menu-toggle{
+        display:flex;
+      }
+
+      nav{
+        position:absolute;
+        top:90px;
+        right:-100%;
+        width:280px;
+        background:white;
+        padding:30px;
+        flex-direction:column;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.1);
+        transition:0.5s;
+      }
+
+      nav.active{
+        right:8%;
+      }
+
+      .collection-hero h1{
+        font-size:50px;
+      }
+
+      .section-title h2{
+        font-size:40px;
+      }
+
+      .luxury-banner h2{
+        font-size:40px;
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      .collection-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+.premium-footer{
+  background:white;
+  padding:70px 8% 20px;
+  box-shadow:0 -5px 30px rgba(0,0,0,.08);
+}
+
+.footer-top{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:40px;
+}
+
+.footer-brand h2{
+  font-size:32px;
+  margin-bottom:15px;
+}
+
+.footer-brand p{
+  color:#666;
+  line-height:1.8;
+}
+
+.footer-links h4{
+  margin-bottom:20px;
+}
+
+.footer-links a{
+  display:block;
+  text-decoration:none;
+  color:#222;
+  margin-bottom:12px;
+  transition:.3s;
+}
+
+.footer-links a:hover{
+  color:#c89b3c;
+}
+
+.footer-bottom{
+  border-top:1px solid #ddd;
+  text-align:center;
+  margin-top:40px;
+  padding-top:20px;
+}
+
+@media(max-width:900px){
+   .footer-top{
+  grid-template-columns:1fr;
+  text-align:center;
+}
+
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+
+  <header>
+
+    <div class="logo">SOVAIRE</div>
+
+    <nav id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="collect.html">Collections</a>
+      <a href="review.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+      <a href="" class="cart">🛒</a>
+    </nav>
+
+    <div class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </header>
+
+  <!-- ================= HERO ================= -->
+
+  <section class="collection-hero">
+
+    <div>
+
+      <h1>Luxury Collections</h1>
+
+      <p>
+        Explore exclusive fragrance collections crafted for elegance,
+        confidence, and unforgettable luxury experiences.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- ================= COLLECTIONS ================= -->
+
+  <section class="collections">
+
+    <div class="section-title">
+
+      <h2>Our Signature Collections</h2>
+
+      <p>
+        Discover timeless scents inspired by luxury and sophistication.
+      </p>
+
+    </div>
+
+    <div class="collection-grid">
+
+      <!-- COLLECTION 1 -->
+
+      <div class="collection-card">
+
+        <div class="collection-image">
+
+          <span class="collection-tag">Women</span>
+
+          <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1200&auto=format&fit=crop" alt="">
+
+        </div>
+
+        <div class="collection-content">
+
+          <h3>Women Collection</h3>
+
+          <p>
+            Elegant floral and vanilla fragrances crafted for timeless beauty.
+          </p>
+
+          <a href="shop.html?filter=women" class="btn">Explore</a>
+
+        </div>
+
+      </div>
+
+      <!-- COLLECTION 2 -->
+
+      <div class="collection-card">
+
+        <div class="collection-image">
+
+          <span class="collection-tag">Men</span>
+
+          <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1200&auto=format&fit=crop" alt="">
+
+        </div>
+
+        <div class="collection-content">
+
+          <h3>Men<br> Collection</h3>
+
+          <p>
+            Deep woody oud fragrances designed for bold personalities.
+          </p>
+
+          <a href="shop.html?filter=men" class="btn">Explore</a>
+
+        </div>
+
+      </div>
+
+      <!-- COLLECTION 3 -->
+
+      <div class="collection-card">
+
+        <div class="collection-image">
+
+          <span class="collection-tag">Luxury</span>
+
+          <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=1200&auto=format&fit=crop" alt="">
+
+        </div>
+
+        <div class="collection-content">
+
+          <h3>uni-Sex Collection</h3>
+
+          <p>
+            Sophisticated floral perfumes inspired by romance and elegance.
+          </p>
+
+          <a href="shop.html?filter=uni-Sex" class="btn">Explore</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= BANNER ================= -->
+
+  <section class="luxury-banner">
+
+    <h2>Crafted For Timeless Luxury</h2>
+
+    <p>
+      Every Sovaire fragrance is designed to inspire confidence,
+      elegance, and unforgettable memories.
+    </p>
+
+    <a href="shop.html" class="btn">Shop Now</a>
+
+  </section>
+
+ <!-- KEEPING YOUR FOOTER -->
+
+<footer class="premium-footer">
+
+<div class="footer-top">
+
+<div class="footer-brand">
+<h2>Sovaire</h2>
+
+<p>
+Discover luxury perfumes crafted with elegance,
+long-lasting freshness, and unforgettable scents
+designed for every occasion.
+</p>
+
+</div>
+
+<div class="footer-links">
+
+<h4>Quick Links</h4>
+
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="collect.html">Collections</a>
+<a href="review.html">Reviews</a>
+<a href="contact.html">Contact</a>
+
+</div>
+
+<div class="footer-links">
+
+<h4>Contact</h4>
+
+<a href="https://www.google.com/maps?q=Alaba+International+Market,Ojo,Lagos,Nigeria" target="_blank">
+📍 Lagos, Nigeria
+</a>
+
+<a href="tel:+2349060582707">
+📞 +234 9060582707
+</a>
+
+<a href="mailto:bigfave1725@gmail.com">
+✉️ bigfave1725@gmail.com
+</a>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+<p>© 2026 Sovaire. All Rights Reserved.</p>
+</div>
+
+</footer>
+<script>
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    menuToggle.addEventListener("click", () => {
+
+      navMenu.classList.toggle("active");
+
+    });
+
+  </script>
+
+</body>
+</html>

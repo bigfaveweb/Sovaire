@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sovaire | Luxury Shop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins', sans-serif;
+      background:#faf7f2;
+      color:#222;
+      overflow-x:hidden;
+    }
+
+    h1,h2,h3,h4{
+      font-family:'Playfair Display', serif;
+    }
+
+    /* ================= HEADER ================= */
+
+    header{
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      left:0;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(10px);
+      z-index:1000;
+      box-shadow:0 2px 15px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      font-size:30px;
+      font-weight:bold;
+      letter-spacing:3px;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:30px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#222;
+      position:relative;
+      transition:0.3s;
+    }
+
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      width:0%;
+      height:2px;
+      background:#c89b3c;
+      transition:0.4s;
+    }
+
+    nav a:hover::after{
+      width:100%;
+    }
+
+    nav a:hover{
+      color:#c89b3c;
+    }
+
+    .menu-toggle{
+      width:35px;
+      display:none;
+      flex-direction:column;
+      gap:6px;
+      cursor:pointer;
+    }
+
+    .menu-toggle span{
+      width:100%;
+      height:3px;
+      background:#111;
+      border-radius:10px;
+      transition:0.4s;
+    }
+
+    /* ================= HERO ================= */
+
+    .shop-hero{
+      min-height:75vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:160px 8% 100px;
+      background:
+      linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+      url('https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1600&auto=format&fit=crop')
+      center/cover;
+      color:white;
+      position:relative;
+    }
+
+    .shop-hero-content{
+      animation:fadeUp 1.2s ease;
+    }
+
+    .shop-hero h1{
+      font-size:75px;
+      margin-bottom:20px;
+    }
+
+    .shop-hero p{
+      max-width:700px;
+      margin:auto;
+      line-height:1.9;
+      font-size:18px;
+      color:#eee;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(60px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* ================= FILTER ================= */
+
+    .filter-section{
+      padding:60px 8% 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+
+    .filter-buttons{
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .filter-btn{
+      padding:12px 25px;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      background:white;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+      transition:0.4s;
+      font-weight:500;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover{
+      background:#111;
+      color:white;
+    }
+
+    .search-box input{
+      padding:14px 20px;
+      border:none;
+      border-radius:50px;
+      width:280px;
+      outline:none;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    /* ================= PRODUCTS ================= */
+
+    .products{
+      padding:40px 8% 120px;
+    }
+
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:35px;
+    }
+
+    .product-card{
+      background:white;
+      border-radius:25px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      transition:0.5s;
+      position:relative;
+    }
+
+    .product-card:hover{
+      transform:translateY(-12px);
+    }
+
+    .product-image{
+      overflow:hidden;
+      position:relative;
+    }
+
+    .product-image img{
+      width:100%;
+      height:360px;
+      object-fit:cover;
+      transition:0.5s;
+    }
+
+    .product-card:hover img{
+      transform:scale(1.1);
+    }
+
+    .tag{
+      position:absolute;
+      top:20px;
+      left:20px;
+      background:#c89b3c;
+      color:white;
+      padding:8px 18px;
+      border-radius:50px;
+      font-size:14px;
+      font-weight:500;
+    }
+
+    .product-content{
+      padding:30px;
+    }
+
+    .product-content h3{
+      font-size:28px;
+      margin-bottom:10px;
+    }
+
+    .product-content p{
+      color:#666;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+
+    .price{
+      font-size:24px;
+      font-weight:600;
+      margin-bottom:20px;
+      display:block;
+    }
+
+    .product-actions{
+      display:flex;
+      gap:15px;
+    }
+
+    .btn{
+      padding:14px 28px;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.4s;
+    }
+
+    .buy-btn{
+      background:#111;
+      color:white;
+      flex:1;
+    }
+
+    .buy-btn:hover{
+      background:#c89b3c;
+    }
+
+    .cart-btn{
+      background:#f4f4f4;
+    }
+
+    .cart-btn:hover{
+      background:#ddd;
+    }
+
+    /* ================= FEATURE BANNER ================= */
+
+    .luxury-banner{
+      margin:50px 8% 120px;
+      padding:100px 8%;
+      border-radius:30px;
+      text-align:center;
+      color:white;
+      position:relative;
+      overflow:hidden;
+      background:
+      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+      url('https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1600&auto=format&fit=crop')
+      center/cover;
+    }
+
+    .luxury-banner h2{
+      font-size:60px;
+      margin-bottom:20px;
+    }
+
+    .luxury-banner p{
+      max-width:700px;
+      margin:auto;
+      line-height:1.9;
+      margin-bottom:30px;
+      color:#eee;
+    }
+
+    .luxury-banner button{
+      padding:16px 35px;
+      border:none;
+      border-radius:50px;
+      background:#c89b3c;
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.4s;
+    }
+
+    .luxury-banner button:hover{
+      transform:scale(1.05);
+    }
+
+    /* ================= CART ================= */
+
+    .cart-popup{
+      position:fixed;
+      top:100px;
+      right:30px;
+      background:#111;
+      color:white;
+      padding:18px 28px;
+      border-radius:12px;
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(-20px);
+      transition:0.4s;
+      z-index:9999;
+    }
+
+    .cart-popup.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer{
+      background:#000;
+      color:white;
+      text-align:center;
+      padding:35px;
+    }
+
+    /* ================= ANIMATION ================= */
+
+    .hidden{
+      opacity:0;
+      transform:translateY(60px);
+      transition:1s;
+    }
+
+    .show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width:900px){
+
+      .menu-toggle{
+        display:flex;
+      }
+
+      nav{
+        position:absolute;
+        top:90px;
+        right:-100%;
+        width:280px;
+        background:white;
+        padding:30px;
+        flex-direction:column;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.1);
+        transition:0.5s;
+      }
+
+      nav.active{
+        right:8%;
+      }
+
+      .shop-hero h1{
+        font-size:50px;
+      }
+
+      .luxury-banner h2{
+        font-size:40px;
+      }
+
+      .filter-section{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .search-box input{
+        width:100%;
+      }
+
+      .product-actions{
+        flex-direction:column;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+
+  <header>
+
+    <div class="logo">SOVAIRE</div>
+
+    <nav id="navMenu">
+      <a href="#">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="#">Collections</a>
+      <a href="#">Reviews</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <div class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </header>
+
+  <!-- ================= HERO ================= -->
+
+  <section class="shop-hero">
+
+    <div class="shop-hero-content">
+
+      <h1>Luxury Perfume Collection</h1>
+
+      <p>
+        Discover premium fragrances crafted with elegance,
+        sophistication, and unforgettable scents designed
+        for modern luxury lovers.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- ================= FILTER ================= -->
+
+  <section class="filter-section">
+
+    <div class="filter-buttons">
+
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Men</button>
+      <button class="filter-btn">Women</button>
+      <button class="filter-btn">Oud</button>
+      <button class="filter-btn">Floral</button>
+
+    </div>
+
+    <div class="search-box">
+      <input type="text" placeholder="Search perfumes...">
+    </div>
+
+  </section>
+
+  <!-- ================= PRODUCTS ================= -->
+
+  <section class="products">
+
+    <div class="product-grid">
+
+      <!-- PRODUCT 1 -->
+
+      <div class="product-card hidden">
+
+        <div class="product-image">
+          <span class="tag">Best Seller</span>
+
+          <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1200&auto=format&fit=crop" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Golden Essence</h3>
+
+          <p>
+            Warm vanilla, amber, and floral notes blended for timeless elegance.
+          </p>
+
+          <span class="price">$120</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 2 -->
+
+      <div class="product-card hidden">
+
+        <div class="product-image">
+          <span class="tag">New</span>
+
+          <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1200&auto=format&fit=crop" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Midnight Oud</h3>
+
+          <p>
+            Deep woody notes designed for bold and confident personalities.
+          </p>
+
+          <span class="price">$145</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 3 -->
+
+      <div class="product-card hidden">
+
+        <div class="product-image">
+          <span class="tag">Luxury</span>
+
+          <img src="Velvet Noir.webp" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Royal Bloom</h3>
+
+          <p>
+            Elegant floral fragrance inspired by romance and sophistication.
+          </p>
+
+          <span class="price">$110</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 4 -->
+
+      <div class="product-card hidden">
+
+        <div class="product-image">
+          <span class="tag">Premium</span>
+
+          <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59db9?q=80&w=1200&auto=format&fit=crop" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Velvet Noir</h3>
+
+          <p>
+            Rich dark musk combined with exotic spices for luxurious evenings.
+          </p>
+
+          <span class="price">$150</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 5 -->
+
+      <div class="product-card hidden">
+
+        <div class="product-image">
+          <span class="tag">Exclusive</span>
+
+          <img src="https://images.unsplash.com/photo-1615634262417-d1f7b79f43ef?q=80&w=1200&auto=format&fit=crop" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Amber Desire</h3>
+
+          <p>
+            A seductive fragrance infused with amber and sweet oriental notes.
+          </p>
+
+          <span class="price">$135</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 6 -->
+
+      <div class="product-card hidden">
+
+        <div class="product-image">
+          <span class="tag">Popular</span>
+
+          <img src="https://images.unsplash.com/photo-1619994403073-2cec11a30766?q=80&w=1200&auto=format&fit=crop" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Crystal Rose</h3>
+
+          <p>
+            Fresh rose petals mixed with fruity accords for a soft luxurious scent.
+          </p>
+
+          <span class="price">$125</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= LUXURY BANNER ================= -->
+
+  <section class="luxury-banner">
+
+    <h2>Crafted For Timeless Luxury</h2>
+
+    <p>
+      Every Sovaire fragrance is designed to inspire confidence,
+      elegance, and unforgettable memories with every spray.
+    </p>
+
+    <button>Explore More</button>
+
+  </section>
+
+  <!-- ================= POPUP ================= -->
+
+  <div class="cart-popup" id="cartPopup">
+    Product added to cart 🛒
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+    <p>© 2026 Sovaire. All Rights Reserved.</p>
+  </footer>
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+    // ================= MOBILE MENU =================
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    menuToggle.addEventListener("click", () => {
+
+      navMenu.classList.toggle("active");
+      menuToggle.classList.toggle("active");
+
+    });
+
+
+    // ================= SCROLL ANIMATION =================
+
+    const hiddenElements = document.querySelectorAll(".hidden");
+
+    const observer = new IntersectionObserver((entries) => {
+
+      entries.forEach((entry) => {
+
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+
+      });
+
+    }, {
+      threshold:0.2
+    });
+
+    hiddenElements.forEach((el) => observer.observe(el));
+
+
+    // ================= FILTER BUTTON ACTIVE =================
+
+    const filterButtons = document.querySelectorAll(".filter-btn");
+
+    filterButtons.forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        filterButtons.forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+      });
+
+    });
+
+
+    // ================= ADD TO CART =================
+
+    const cartButtons = document.querySelectorAll(".add-to-cart");
+    const popup = document.getElementById("cartPopup");
+
+    cartButtons.forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        popup.classList.add("show");
+
+        setTimeout(() => {
+          popup.classList.remove("show");
+        }, 2500);
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

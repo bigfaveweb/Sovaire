@@ -1,0 +1,667 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sovaire | Reviews</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#faf7f2;
+color:#222;
+overflow-x:hidden;
+}
+
+h1,h2,h3{
+font-family:'Playfair Display',serif;
+}
+
+ /* ================= HEADER ================= */
+
+    header{
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:relative;
+      top:0;
+      left:0;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(10px);
+      z-index:1000;
+      box-shadow:0 2px 15px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      font-size:30px;
+      font-weight:bold;
+      letter-spacing:3px;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:30px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#222;
+      position:relative;
+      transition:0.3s;
+    }
+
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      width:0%;
+      height:2px;
+      background:#c89b3c;
+      transition:0.4s;
+    }
+
+    nav a:hover::after{
+      width:100%;
+    }
+
+    nav a:hover{
+      color:#c89b3c;
+    }
+
+    .menu-toggle{
+      width:35px;
+      display:none;
+      flex-direction:column;
+      gap:6px;
+      cursor:pointer;
+    }
+
+    .menu-toggle span{
+      width:100%;
+      height:3px;
+      background:#111;
+      border-radius:10px;
+    }
+
+/* HERO */
+
+.review-hero{
+min-height:60vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:120px 8%;
+color:white;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("Velvet\ Noir.webp")
+center/cover;
+}
+
+.review-hero h1{
+font-size:70px;
+margin-bottom:15px;
+}
+
+.review-hero p{
+max-width:700px;
+margin:auto;
+line-height:1.8;
+color:#eee;
+}
+
+/* REVIEWS */
+
+.reviews{
+padding:100px 8%;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:60px;
+}
+
+.section-title h2{
+font-size:55px;
+margin-bottom:15px;
+}
+
+.section-title p{
+color:#666;
+}
+
+.review-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+.review-card{
+background:white;
+padding:35px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+transition:.4s;
+}
+
+.review-card:hover{
+transform:translateY(-10px);
+}
+
+.stars{
+color:#c89b3c;
+font-size:20px;
+margin-bottom:15px;
+}
+
+.review-card p{
+line-height:1.8;
+color:#666;
+margin-bottom:20px;
+}
+
+.customer{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.customer img{
+width:60px;
+height:60px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.customer h4{
+margin-bottom:5px;
+}
+
+/* REVIEW FORM */
+
+.review-form{
+padding:0 8% 120px;
+}
+
+.form-box{
+background:white;
+padding:50px;
+border-radius:30px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+max-width:800px;
+margin:auto;
+}
+
+.form-box h2{
+text-align:center;
+margin-bottom:30px;
+font-size:40px;
+}
+
+.form-group{
+margin-bottom:20px;
+}
+
+.form-group input,
+.form-group textarea{
+width:100%;
+padding:15px;
+border:1px solid #ddd;
+border-radius:15px;
+outline:none;
+font-size:15px;
+}
+
+.form-group textarea{
+height:140px;
+resize:none;
+}
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+background:#111;
+color:white;
+border:none;
+border-radius:50px;
+cursor:pointer;
+font-weight:600;
+transition:.4s;
+}
+
+.btn:hover{
+background:#c89b3c;
+}
+
+/* STATS */
+
+.stats{
+padding:100px 8%;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+text-align:center;
+}
+
+.stat-box{
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.stat-box h2{
+font-size:45px;
+color:#c89b3c;
+}
+
+.stat-box p{
+margin-top:10px;
+color:#666;
+}
+
+/* FOOTER */
+
+.premium-footer{
+    background:var(--card);
+    margin-top:80px;
+    padding:70px 0 20px;
+    box-shadow:0 -5px 30px rgba(0,0,0,.08);
+}
+.container{
+  transform: translate(74px);
+}
+.footer-top{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+    margin-bottom:40px;
+}
+footer{
+    text-align:center;
+    padding:25px;
+    background:var(--card);
+    margin-top:40px;
+}
+.footer-brand h2{
+    font-size:32px;
+    margin-bottom:15px;
+     color:black;
+}
+
+.footer-brand span{
+ color:black;
+}
+
+.footer-brand p{
+    opacity:.8;
+    line-height:1.8;
+     color:black;
+}
+
+.footer-links h4{
+    margin-bottom:20px;
+   color:black;
+}
+
+.footer-links a{
+    display:block;
+    text-decoration:none;
+    color:black;
+    margin-bottom:12px;
+    transition:.3s;
+}
+
+.footer-links a:hover{
+    transform:translateX(5px);
+    color:burlywood;
+}
+
+.footer-bottom{
+    border-top:1px solid rgba(128,128,128,.2);
+    padding-top:25px;
+   
+}
+
+.footer-bottom p{
+   
+     color:black;
+}
+.footer-paragraph{
+ 
+  width:100%;
+  height:50px;
+   transform: translate(-50px);
+}
+
+@media(max-width:900px){
+    .footer-top{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+    .container{
+  transform: translate(0px);
+}
+.footer-paragraph{
+ 
+  width:100%;
+  height:50px;
+   transform: translate(0px);
+}
+ .menu-toggle{
+        display:flex;
+      }
+
+      nav{
+        position:absolute;
+        top:90px;
+        right:-100%;
+        width:280px;
+        background:white;
+        padding:30px;
+        flex-direction:column;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.1);
+        transition:0.5s;
+      }
+
+      nav.active{
+        right:8%;
+      }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+.review-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:700px){
+
+.review-grid{
+grid-template-columns:1fr;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+.review-hero h1{
+font-size:45px;
+}
+
+.section-title h2{
+font-size:38px;
+}
+
+.form-box{
+padding:30px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">SOVAIRE</div>
+
+    <nav id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="collect.html">Collections</a>
+      <a href="review.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="cart">🛒</a>
+    </nav>
+
+    <div class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </header>
+
+<section class="review-hero">
+<div>
+<h1>Customer Reviews</h1>
+<p>
+Discover why fragrance lovers choose Sovaire for luxury,
+elegance, and unforgettable scents.
+</p>
+</div>
+</section>
+
+<section class="stats">
+
+<div class="stat-box">
+<h2>4.9★</h2>
+<p>Average Rating</p>
+</div>
+
+<div class="stat-box">
+<h2>8K+</h2>
+<p>Happy Customers</p>
+</div>
+
+<div class="stat-box">
+<h2>12K+</h2>
+<p>Orders Delivered</p>
+</div>
+
+<div class="stat-box">
+<h2>98%</h2>
+<p>Customer Satisfaction</p>
+</div>
+
+</section>
+
+<section class="reviews">
+
+<div class="section-title">
+<h2>What Our Customers Say</h2>
+<p>Real experiences from fragrance lovers worldwide.</p>
+</div>
+
+<div class="review-grid">
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<p>
+The Golden Collection exceeded my expectations.
+The fragrance lasts all day and feels incredibly luxurious.
+</p>
+
+<div class="customer">
+<img src="https://randomuser.me/api/portraits/women/44.jpg">
+<div>
+<h4>Amara James</h4>
+<span>Lagos, Nigeria</span>
+</div>
+</div>
+</div>
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<p>
+The Oud Collection is rich, bold and elegant.
+I've received compliments every time I wear it.
+</p>
+
+<div class="customer">
+<img src="https://randomuser.me/api/portraits/men/32.jpg">
+<div>
+<h4>David Mensah</h4>
+<span>Accra, Ghana</span>
+</div>
+</div>
+</div>
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<p>
+Beautiful packaging and premium scent quality.
+Sovaire feels like a true luxury brand.
+</p>
+
+<div class="customer">
+<img src="https://randomuser.me/api/portraits/women/65.jpg">
+<div>
+<h4>Sarah Williams</h4>
+<span>London, UK</span>
+</div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="review-form">
+
+<div class="form-box">
+
+<h2>Leave A Review</h2>
+
+<form id="reviewForm">
+
+<div class="form-group">
+<input type="text" id="name" placeholder="Your Name" required>
+</div>
+
+<div class="form-group">
+<input type="email" id="email" placeholder="Email Address" required>
+</div>
+
+<div class="form-group">
+<textarea id="review" placeholder="Write your review..." required></textarea>
+</div>
+
+<center>
+<button type="submit" class="btn">Send Review</button>
+</center>
+
+</form>
+
+</div>
+
+</section>
+
+
+  <footer class="premium-footer">
+    <div class="container">
+
+        <div class="footer-top">
+
+            <div class="footer-brand">
+                <h2>Sovaire</h2>
+               <p>
+  Discover luxury perfumes crafted with elegance,
+  long-lasting freshness, and unforgettable scents
+  designed for every occasion.
+</p>
+            </div>
+ <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="collect.html">Collections</a>
+                <a href="contact.html">Reviews</a>
+                <a href="contact.html">Contact</a>
+                 
+            </div>
+
+   
+
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <a href="https://www.google.com/maps?q=Alaba+International+Market,Ojo,Lagos,Nigeria" target="_blank">
+                 📍 Lagos, Nigeria
+                  </a>
+                
+                <a href="tel:+2349060582707">📞 +234 9060582707</a>
+                <a href="mailto:bigfave1725@gmail.com?subject=hello">✉️ bigfave</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+           <div class="footer-paragraph">
+
+            <p>© 2026 Sovaire. All Rights Reserved.</p>
+        </div>
+</div>
+    </div>
+</footer>
+<script>
+    
+  
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    menuToggle.addEventListener("click", () => {
+
+      navMenu.classList.toggle("active");
+
+    });
+
+
+document.getElementById("reviewForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let name = document.getElementById("name").value;
+let email = document.getElementById("email").value;
+let review = document.getElementById("review").value;
+
+let phone = "2349060582707"; // Your WhatsApp number
+
+let message =
+`⭐ NEW SOVAIRE REVIEW
+
+👤 Name: ${name}
+
+📧 Email: ${email}
+
+📝 Review:
+${review}`;
+
+let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+window.open(url, "_blank");
+
+});
+</script>
+
+</body>
+</html>
+

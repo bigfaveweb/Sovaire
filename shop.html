@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sovaire | Luxury Shop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins', sans-serif;
+      background:#faf7f2;
+      color:#222;
+      overflow-x:hidden;
+    }
+
+    h1,h2,h3,h4{
+      font-family:'Playfair Display', serif;
+    }
+
+    /* ================= HEADER ================= */
+
+    header{
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:relative;
+      top:0;
+      left:0;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(10px);
+      z-index:1000;
+      box-shadow:0 2px 15px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      font-size:30px;
+      font-weight:bold;
+      letter-spacing:3px;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:30px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#222;
+      position:relative;
+      transition:0.3s;
+    }
+
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      width:0%;
+      height:2px;
+      background:#c89b3c;
+      transition:0.4s;
+    }
+
+    nav a:hover::after{
+      width:100%;
+    }
+
+    nav a:hover{
+      color:#c89b3c;
+    }
+
+    .menu-toggle{
+      width:35px;
+      display:none;
+      flex-direction:column;
+      gap:6px;
+      cursor:pointer;
+    }
+
+    .menu-toggle span{
+      width:100%;
+      height:3px;
+      background:#111;
+      border-radius:10px;
+      transition:0.4s;
+    }
+
+    /* ================= HERO ================= */
+
+    .shop-hero{
+      min-height:75vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:160px 8% 100px;
+      background:
+      linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+      url("CHARM-CREATIVE-2.webp")
+      center/cover;
+      color:white;
+      position:relative;
+    }
+
+    .shop-hero-content{
+      animation:fadeUp 1.2s ease;
+    }
+
+    .shop-hero h1{
+      font-size:75px;
+      margin-bottom:20px;
+    }
+
+    .shop-hero p{
+      max-width:700px;
+      margin:auto;
+      line-height:1.9;
+      font-size:18px;
+      color:#eee;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(60px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* ================= FILTER ================= */
+
+    .filter-section{
+      padding:60px 8% 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+
+    .filter-buttons{
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .filter-btn{
+      padding:12px 25px;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      background:white;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+      transition:0.4s;
+      font-weight:500;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover{
+      background:#111;
+      color:white;
+    }
+
+    .search-box input{
+      padding:14px 20px;
+      border:none;
+      border-radius:50px;
+      width:280px;
+      outline:none;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    /* ================= PRODUCTS ================= */
+
+    .products{
+      padding:40px 8% 120px;
+    }
+
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:35px;
+}
+
+.product-card{
+  width:100%;
+  max-width:350px;
+  margin:auto;
+}
+@media(max-width:1000px){
+
+  .product-grid{
+    grid-template-columns:repeat(2, 1fr);
+  }
+
+}
+
+@media(max-width:700px){
+
+  .product-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+    .product-card:hover{
+      transform:translateY(-12px);
+    }
+
+    .product-image{
+      overflow:hidden;
+      position:relative;
+    }
+
+    .product-image img{
+      width:100%;
+      height:360px;
+      object-fit:cover;
+      transition:0.5s;
+    }
+
+    .product-card:hover img{
+      transform:scale(1.1);
+    }
+
+    .tag{
+      position:absolute;
+      top:20px;
+      left:20px;
+      background:#c89b3c;
+      color:white;
+      padding:8px 18px;
+      border-radius:50px;
+      font-size:14px;
+      font-weight:500;
+    }
+
+    .product-content{
+      padding:30px;
+    }
+
+    .product-content h3{
+      font-size:28px;
+      margin-bottom:10px;
+    }
+
+    .product-content p{
+      color:#666;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+
+    .price{
+      font-size:24px;
+      font-weight:600;
+      margin-bottom:20px;
+      display:block;
+    }
+
+    .product-actions{
+      display:flex;
+      gap:15px;
+    }
+
+    .btn{
+      padding:14px 28px;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.4s;
+    }
+
+    .buy-btn{
+      background:#111;
+      color:white;
+      flex:1;
+    }
+
+    .buy-btn:hover{
+      background:#c89b3c;
+    }
+
+    .cart-btn{
+      background:#f4f4f4;
+    }
+
+    .cart-btn:hover{
+      background:#ddd;
+    }
+
+    /* ================= FEATURE BANNER ================= */
+
+    .luxury-banner{
+      margin:50px 8% 120px;
+      padding:100px 8%;
+      border-radius:30px;
+      text-align:center;
+      color:white;
+      position:relative;
+      overflow:hidden;
+      background:
+      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+      url(yellow.jpg)
+      center/cover;
+    }
+
+    .luxury-banner h2{
+      font-size:60px;
+      margin-bottom:20px;
+    }
+
+    .luxury-banner p{
+      max-width:700px;
+      margin:auto;
+      line-height:1.9;
+      margin-bottom:30px;
+      color:#eee;
+    }
+
+    .luxury-banner button{
+      padding:16px 35px;
+      border:none;
+      border-radius:50px;
+      background:#c89b3c;
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.4s;
+    }
+
+    .luxury-banner button:hover{
+      transform:scale(1.05);
+    }
+
+    /* ================= CART ================= */
+
+    .cart-popup{
+      position:fixed;
+      top:100px;
+      right:30px;
+      background:#111;
+      color:white;
+      padding:18px 28px;
+      border-radius:12px;
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(-20px);
+      transition:0.4s;
+      z-index:9999;
+    }
+
+    .cart-popup.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+   
+  
+
+    /* ================= ANIMATION ================= */
+
+    .hidden{
+      opacity:0;
+      transform:translateY(60px);
+      transition:1s;
+    }
+
+    .show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width:900px){
+
+      .menu-toggle{
+        display:flex;
+      }
+
+      nav{
+        position:absolute;
+        top:90px;
+        right:-100%;
+        width:280px;
+        background:white;
+        padding:30px;
+        flex-direction:column;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.1);
+        transition:0.5s;
+      }
+
+      nav.active{
+        right:8%;
+      }
+
+      .shop-hero h1{
+        font-size:50px;
+      }
+
+      .luxury-banner h2{
+        font-size:40px;
+      }
+
+      .filter-section{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .search-box input{
+        width:100%;
+      }
+
+      .product-actions{
+        flex-direction:column;
+      }
+    }
+/* ================= FOOTER ================= */
+
+.premium-footer{
+  background:white;
+  padding:70px 8% 20px;
+  box-shadow:0 -5px 30px rgba(0,0,0,.08);
+}
+
+.footer-top{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:40px;
+}
+
+.footer-brand h2{
+  font-size:32px;
+  margin-bottom:15px;
+}
+
+.footer-brand p{
+  color:#666;
+  line-height:1.8;
+}
+
+.footer-links h4{
+  margin-bottom:20px;
+}
+
+.footer-links a{
+  display:block;
+  text-decoration:none;
+  color:#222;
+  margin-bottom:12px;
+  transition:.3s;
+}
+
+.footer-links a:hover{
+  color:#c89b3c;
+}
+
+.footer-bottom{
+  border-top:1px solid #ddd;
+  text-align:center;
+  margin-top:40px;
+  padding-top:20px;
+}
+
+@media(max-width:900px){
+    .footer-top{
+  grid-template-columns:1fr;
+  text-align:center;
+}
+   
+}
+.cart-text{
+  display:none;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+
+  <header>
+
+    <div class="logo">SOVAIRE</div>
+
+    <nav id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="shop.index.html">Shop</a>
+      <a href="collect.html">Collections</a>
+      <a href="review.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+      <a href="#" class="cart">🛒</a>
+      <div class="cart-text">View cart</div>
+    </nav>
+
+    <div class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </header>
+
+  <!-- ================= HERO ================= -->
+
+  <section class="shop-hero">
+
+    <div class="shop-hero-content">
+
+      <h1>Luxury Perfume Collection</h1>
+
+      <p>
+        Discover premium fragrances crafted with elegance,
+        sophistication, and unforgettable scents designed
+        for modern luxury lovers.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- ================= FILTER ================= -->
+
+  <section class="filter-section">
+
+   <!-- REPLACE YOUR FILTER BUTTONS WITH THIS -->
+
+<div class="filter-buttons">
+
+  <button class="filter-btn active" data-filter="all">All</button>
+
+  <button class="filter-btn" data-filter="men">Men</button>
+
+  <button class="filter-btn" data-filter="women">Women</button>
+
+  <button class="filter-btn" data-filter="luxury">luxury</button>
+
+  <button class="filter-btn" data-filter="uni-Sex">uni-sex</button>
+
+  
+
+</div>
+
+    <div class="search-box">
+      <input type="text" id="searchInput"   placeholder="Search perfumes...">
+    </div>
+
+  </section>
+
+  <!-- ================= PRODUCTS ================= -->
+
+  <section class="products">
+
+    <div class="product-grid">
+
+      <!-- PRODUCT 1 -->
+
+      <div class="product-card hidden women"data-name="Golden Essence">
+
+        <div class="product-image">
+          <span class="tag">Best Seller</span>
+
+          <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1200&auto=format&fit=crop" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Golden Essence</h3>
+
+          <p>
+            Warm vanilla, amber, and floral notes blended for timeless elegance.
+          </p>
+
+          <span class="price">$120</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 2 -->
+
+      <div class="product-card" hidden uni-Sex data-name="Midnight Oud">
+
+        <div class="product-image">
+          <span class="tag">New</span>
+
+          <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1200&auto=format&fit=crop" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Midnight Oud</h3>
+
+          <p>
+            Deep woody notes designed for bold and confident personalities.
+          </p>
+
+          <span class="price">$145</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 3 -->
+
+      <div class="product-card hidden women" data-name="Royal Bloom">
+
+        <div class="product-image">
+          <span class="tag">Luxury</span>
+
+          <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=1200&auto=format&fit=crop" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Royal Bloom</h3>
+
+          <p>
+            Elegant floral fragrance inspired by romance and sophistication.
+          </p>
+
+          <span class="price">$110</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 4 -->
+
+      <div class="product-card hidden luxury women" data-name="Velvet Noir">
+
+        <div class="product-image">
+          <span class="tag">Premium</span>
+
+          <img src="Velvet Noir.webp" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Velvet Noir</h3>
+
+          <p>
+            Rich dark musk combined with exotic spices for luxurious evenings.
+          </p>
+
+          <span class="price">$150</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 5 -->
+
+      <div class="product-card hidden men" data-name="Amber Desire">
+
+        <div class="product-image">
+          <span class="tag">Exclusive</span>
+
+          <img src="Amber Desire.webp" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Amber Desire</h3>
+
+          <p>
+            A seductive fragrance infused with amber and sweet oriental notes.
+          </p>
+
+          <span class="price">$135</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 6 -->
+
+      <div class="product-card hidden women" data-name="crystal rose">
+
+        <div class="product-image">
+          <span class="tag">Popular</span>
+
+          <img src="Crystal Rose.webp "alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Crystal Rose</h3>
+
+          <p>
+            Fresh rose petals mixed with fruity accords for a soft luxurious scent.
+          </p>
+
+          <span class="price">$125</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      
+      <!-- PRODUCT 4 -->
+
+      <div class="product-card hidden luxury men" data-name="Velvet Noir">
+
+        <div class="product-image">
+          <span class="tag">Premium</span>
+
+          <img src="URBAN-COMBO.webp" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>French Essence</h3>
+
+          <p>
+            Rich dark musk combined with exotic spices for luxurious evenings.
+          </p>
+
+          <span class="price">$150</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 5 -->
+
+      <div class="product-card hidden luxury uni-Sex" data-name="Amber Desire">
+
+        <div class="product-image">
+          <span class="tag">Exclusive</span>
+
+          <img src="lucius.webp" alt="">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Lucius-maximus</h3>
+
+          <p>
+            A seductive fragrance infused with amber and sweet oriental notes.
+          </p>
+
+          <span class="price">$135</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 6 -->
+
+      <div class="product-card hidden luxury women" data-name="crystal rose">
+
+        <div class="product-image">
+          <span class="tag">New</span>
+
+          <img src="wani.jpg">
+        </div>
+
+        <div class="product-content">
+
+          <h3>Wani-Jade</h3>
+
+          <p>
+            Fresh rose petals mixed with fruity accords for a soft luxurious scent.
+          </p>
+
+          <span class="price">$125</span>
+
+          <div class="product-actions">
+            <button class="btn buy-btn">Buy Now</button>
+            <button class="btn cart-btn add-to-cart">🛒</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= LUXURY BANNER ================= -->
+
+  <section class="luxury-banner">
+
+    <h2>Crafted For Timeless Luxury</h2>
+
+    <p>
+      Every Sovaire fragrance is designed to inspire confidence,
+      elegance, and unforgettable memories with every spray.
+    </p>
+
+   
+
+  </section>
+
+  <!-- ================= POPUP ================= -->
+
+  <div class="cart-popup" id="cartPopup">
+    Product added to cart 🛒
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+
+<!-- KEEPING YOUR FOOTER -->
+
+<footer class="premium-footer">
+
+<div class="footer-top">
+
+<div class="footer-brand">
+<h2>Sovaire</h2>
+
+<p>
+Discover luxury perfumes crafted with elegance,
+long-lasting freshness, and unforgettable scents
+designed for every occasion.
+</p>
+
+</div>
+
+<div class="footer-links">
+
+<h4>Quick Links</h4>
+
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="collect.html">Collections</a>
+<a href="review.html">Reviews</a>
+<a href="contact.html">Contact</a>
+
+</div>
+
+<div class="footer-links">
+
+<h4>Contact</h4>
+
+<a href="https://www.google.com/maps?q=Alaba+International+Market,Ojo,Lagos,Nigeria" target="_blank">
+📍 Lagos,
+
+<a href="tel:+2349060582707">
+📞 +234 9060582707
+</a>
+
+<a href="mailto:bigfave1725@gmail.com">
+✉️ bigfave1725@gmail.com
+</a>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+<p>© 2026 Sovaire. All Rights Reserved.</p>
+</div>
+
+</footer>
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <!-- REPLACE YOUR FILTER JAVASCRIPT WITH THIS -->
+
+<script>
+
+  // ================= MOBILE MENU =================
+
+  const menuToggle = document.getElementById("menuToggle");
+  const navMenu = document.getElementById("navMenu");
+
+  menuToggle.addEventListener("click", () => {
+
+    navMenu.classList.toggle("active");
+
+  });
+
+
+  // ================= SCROLL ANIMATION =================
+
+  const hiddenElements = document.querySelectorAll(".hidden");
+
+  const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+      if(entry.isIntersecting){
+        entry.target.classList.add("show");
+      }
+
+    });
+
+  }, {
+    threshold:0.2
+  });
+
+  hiddenElements.forEach((el) => observer.observe(el));
+
+
+  // ================= FILTER PRODUCTS =================
+
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const products = document.querySelectorAll(".product-card");
+
+  filterButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+      // ACTIVE BUTTON
+
+      filterButtons.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      // FILTER
+
+      const filter = button.getAttribute("data-filter");
+
+      products.forEach((product) => {
+
+        if(filter === "all"){
+
+          product.style.display = "block";
+
+        } else if(product.classList.contains(filter)){
+
+          product.style.display = "block";
+
+        } else {
+
+          product.style.display = "none";
+
+        }
+
+      });
+
+    });
+
+  });
+const params = new URLSearchParams(window.location.search);
+const filter = params.get("filter");
+
+if (filter) {
+    const button = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+
+    if (button) {
+        button.click();
+    }
+}
+// ================= SEARCH PRODUCTS =================
+
+const searchInput = document.getElementById("searchInput");
+const productsSearch = document.querySelectorAll(".product-card");
+
+searchInput.addEventListener("input", function () {
+
+  const value = this.value.toLowerCase();
+
+  productsSearch.forEach((product) => {
+
+    const name = product.getAttribute("data-name").toLowerCase();
+
+    if(name.includes(value)){
+
+      product.style.display = "block";
+
+    } else {
+
+      product.style.display = "none";
+
+    }
+
+  });
+
+});
+
+
+  // ================= ADD TO CART =================
+
+  const cartButtons = document.querySelectorAll(".add-to-cart");
+  const popup = document.getElementById("cartPopup");
+
+  cartButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+      popup.classList.add("show");
+
+      setTimeout(() => {
+        popup.classList.remove("show");
+      }, 2500);
+
+    });
+
+  });
+
+</script>
+</body>
+</html>
