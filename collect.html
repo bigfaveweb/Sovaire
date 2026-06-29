@@ -17,11 +17,15 @@
       scroll-behavior:smooth;
     }
 
+    html,
+    body{
+      overflow-x:hidden;
+    }
+
     body{
       font-family:'Poppins', sans-serif;
       background:#faf7f2;
       color:#222;
-      overflow-x:hidden;
     }
 
     h1,h2,h3{
@@ -37,8 +41,6 @@
       justify-content:space-between;
       align-items:center;
       position:relative;
-      top:0;
-      left:0;
       background:rgba(255,255,255,0.92);
       backdrop-filter:blur(10px);
       z-index:1000;
@@ -83,12 +85,15 @@
       color:#c89b3c;
     }
 
+    /* ================= MENU TOGGLE ================= */
+
     .menu-toggle{
       width:35px;
       display:none;
       flex-direction:column;
       gap:6px;
       cursor:pointer;
+      z-index:1001;
     }
 
     .menu-toggle span{
@@ -96,6 +101,19 @@
       height:3px;
       background:#111;
       border-radius:10px;
+      transition:0.4s;
+    }
+
+    .menu-toggle.active span:nth-child(1){
+      transform:rotate(45deg) translateY(12px);
+    }
+
+    .menu-toggle.active span:nth-child(2){
+      opacity:0;
+    }
+
+    .menu-toggle.active span:nth-child(3){
+      transform:rotate(-45deg) translateY(-12px);
     }
 
     /* ================= HERO ================= */
@@ -115,7 +133,7 @@
     }
 
     .collection-hero h1{
-      font-size:75px;
+      font-size:clamp(2.8rem, 8vw, 75px);
       margin-bottom:20px;
     }
 
@@ -139,7 +157,7 @@
     }
 
     .section-title h2{
-      font-size:55px;
+      font-size:clamp(2.2rem, 7vw, 55px);
       margin-bottom:15px;
     }
 
@@ -208,6 +226,8 @@
       margin-bottom:25px;
     }
 
+    /* ================= BUTTON ================= */
+
     .btn{
       display:inline-block;
       padding:14px 30px;
@@ -238,7 +258,7 @@
     }
 
     .luxury-banner h2{
-      font-size:60px;
+      font-size:clamp(2.2rem, 7vw, 60px);
       margin-bottom:20px;
     }
 
@@ -252,6 +272,50 @@
 
     /* ================= FOOTER ================= */
 
+    .premium-footer{
+      background:white;
+      padding:70px 8% 20px;
+      box-shadow:0 -5px 30px rgba(0,0,0,.08);
+    }
+
+    .footer-top{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:40px;
+    }
+
+    .footer-brand h2{
+      font-size:32px;
+      margin-bottom:15px;
+    }
+
+    .footer-brand p{
+      color:#666;
+      line-height:1.8;
+    }
+
+    .footer-links h4{
+      margin-bottom:20px;
+    }
+
+    .footer-links a{
+      display:block;
+      text-decoration:none;
+      color:#222;
+      margin-bottom:12px;
+      transition:.3s;
+    }
+
+    .footer-links a:hover{
+      color:#c89b3c;
+    }
+
+    .footer-bottom{
+      border-top:1px solid #ddd;
+      text-align:center;
+      margin-top:40px;
+      padding-top:20px;
+    }
 
     /* ================= RESPONSIVE ================= */
 
@@ -273,7 +337,7 @@
         position:absolute;
         top:90px;
         right:-100%;
-        width:280px;
+        width:min(280px, 90vw);
         background:white;
         padding:30px;
         flex-direction:column;
@@ -283,19 +347,12 @@
       }
 
       nav.active{
-        right:8%;
+        right:5%;
       }
 
-      .collection-hero h1{
-        font-size:50px;
-      }
-
-      .section-title h2{
-        font-size:40px;
-      }
-
-      .luxury-banner h2{
-        font-size:40px;
+      .footer-top{
+        grid-template-columns:1fr;
+        text-align:center;
       }
 
     }
@@ -306,59 +363,25 @@
         grid-template-columns:1fr;
       }
 
+      .collections{
+        padding:90px 6%;
+      }
+
+      .luxury-banner{
+        margin:0 6% 90px;
+        padding:80px 6%;
+      }
+
+      .collection-content{
+        padding:24px;
+      }
+
+      .collection-image img{
+        height:350px;
+      }
+
     }
-.premium-footer{
-  background:white;
-  padding:70px 8% 20px;
-  box-shadow:0 -5px 30px rgba(0,0,0,.08);
-}
 
-.footer-top{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:40px;
-}
-
-.footer-brand h2{
-  font-size:32px;
-  margin-bottom:15px;
-}
-
-.footer-brand p{
-  color:#666;
-  line-height:1.8;
-}
-
-.footer-links h4{
-  margin-bottom:20px;
-}
-
-.footer-links a{
-  display:block;
-  text-decoration:none;
-  color:#222;
-  margin-bottom:12px;
-  transition:.3s;
-}
-
-.footer-links a:hover{
-  color:#c89b3c;
-}
-
-.footer-bottom{
-  border-top:1px solid #ddd;
-  text-align:center;
-  margin-top:40px;
-  padding-top:20px;
-}
-
-@media(max-width:900px){
-   .footer-top{
-  grid-template-columns:1fr;
-  text-align:center;
-}
-
-}
   </style>
 </head>
 
@@ -376,7 +399,7 @@
       <a href="collect.html">Collections</a>
       <a href="review.html">Reviews</a>
       <a href="contact.html">Contact</a>
-      <a href="" class="cart">🛒</a>
+      <a href="#" class="cart">🛒</a>
     </nav>
 
     <div class="menu-toggle" id="menuToggle">
@@ -460,7 +483,7 @@
 
         <div class="collection-content">
 
-          <h3>Men<br> Collection</h3>
+          <h3>Men Collection</h3>
 
           <p>
             Deep woody oud fragrances designed for bold personalities.
@@ -486,13 +509,13 @@
 
         <div class="collection-content">
 
-          <h3>uni-Sex Collection</h3>
+          <h3>Uni-Sex Collection</h3>
 
           <p>
             Sophisticated floral perfumes inspired by romance and elegance.
           </p>
 
-          <a href="shop.html?filter=uni-Sex" class="btn">Explore</a>
+          <a href="shop.html?filter=unisex" class="btn">Explore</a>
 
         </div>
 
@@ -517,61 +540,65 @@
 
   </section>
 
- <!-- KEEPING YOUR FOOTER -->
+  <!-- ================= FOOTER ================= -->
 
-<footer class="premium-footer">
+  <footer class="premium-footer">
 
-<div class="footer-top">
+    <div class="footer-top">
 
-<div class="footer-brand">
-<h2>Sovaire</h2>
+      <div class="footer-brand">
 
-<p>
-Discover luxury perfumes crafted with elegance,
-long-lasting freshness, and unforgettable scents
-designed for every occasion.
-</p>
+        <h2>Sovaire</h2>
 
-</div>
+        <p>
+          Discover luxury perfumes crafted with elegance,
+          long-lasting freshness, and unforgettable scents
+          designed for every occasion.
+        </p>
 
-<div class="footer-links">
+      </div>
 
-<h4>Quick Links</h4>
+      <div class="footer-links">
 
-<a href="index.html">Home</a>
-<a href="shop.html">Shop</a>
-<a href="collect.html">Collections</a>
-<a href="review.html">Reviews</a>
-<a href="contact.html">Contact</a>
+        <h4>Quick Links</h4>
 
-</div>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="collect.html">Collections</a>
+        <a href="review.html">Reviews</a>
+        <a href="contact.html">Contact</a>
 
-<div class="footer-links">
+      </div>
 
-<h4>Contact</h4>
+      <div class="footer-links">
 
-<a href="https://www.google.com/maps?q=Alaba+International+Market,Ojo,Lagos,Nigeria" target="_blank">
-📍 Lagos, Nigeria
-</a>
+        <h4>Contact</h4>
 
-<a href="tel:+2349060582707">
-📞 +234 9060582707
-</a>
+        <a href="https://www.google.com/maps?q=Alaba+International+Market,Ojo,Lagos,Nigeria" target="_blank">
+          📍 Lagos, Nigeria
+        </a>
 
-<a href="mailto:bigfave1725@gmail.com">
-✉️ bigfave1725@gmail.com
-</a>
+        <a href="tel:+2349060582707">
+          📞 +234 9060582707
+        </a>
 
-</div>
+        <a href="mailto:bigfave1725@gmail.com">
+          ✉️ bigfave1725@gmail.com
+        </a>
 
-</div>
+      </div>
 
-<div class="footer-bottom">
-<p>© 2026 Sovaire. All Rights Reserved.</p>
-</div>
+    </div>
 
-</footer>
-<script>
+    <div class="footer-bottom">
+      <p>© 2026 Sovaire. All Rights Reserved.</p>
+    </div>
+
+  </footer>
+
+  <!-- ================= SCRIPT ================= -->
+
+  <script>
 
     const menuToggle = document.getElementById("menuToggle");
     const navMenu = document.getElementById("navMenu");
@@ -579,6 +606,7 @@ designed for every occasion.
     menuToggle.addEventListener("click", () => {
 
       navMenu.classList.toggle("active");
+      menuToggle.classList.toggle("active");
 
     });
 
